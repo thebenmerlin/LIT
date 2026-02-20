@@ -1,0 +1,21 @@
+0 verbose cli /Users/gajanan/.nvm/versions/node/v20.19.5/bin/node /Users/gajanan/.nvm/versions/node/v20.19.5/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v20.19.5
+3 silly config load:file:/Users/gajanan/.nvm/versions/node/v20.19.5/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/gajanan/.npmrc
+5 silly config load:file:/Users/gajanan/.nvm/versions/node/v20.19.5/etc/npmrc
+6 verbose title npm exec create-next-app@latest --help
+7 verbose argv "exec" "--cache" "./.npm-cache" "--yes" "--" "create-next-app@latest" "--help"
+8 verbose logfile logs-max:10 dir:/Users/gajanan/Documents/Final-Year-Project/.npm-cache/_logs/2026-02-20T20_31_14_792Z-
+9 verbose logfile /Users/gajanan/Documents/Final-Year-Project/.npm-cache/_logs/2026-02-20T20_31_14_792Z-debug-0.log
+10 silly logfile done cleaning log files
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 http fetch GET 200 https://registry.npmjs.org/create-next-app 90ms (cache revalidated)
+13 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+14 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+15 verbose cwd /Users/gajanan/Documents/Final-Year-Project
+16 verbose os Darwin 25.3.0
+17 verbose node v20.19.5
+18 verbose npm  v10.8.2
+19 verbose exit 0
+20 info ok

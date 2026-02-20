@@ -1,0 +1,39 @@
+0 verbose cli /Users/gajanan/.nvm/versions/node/v20.19.5/bin/node /Users/gajanan/.nvm/versions/node/v20.19.5/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v20.19.5
+3 silly config load:file:/Users/gajanan/.nvm/versions/node/v20.19.5/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/gajanan/.npmrc
+5 silly config load:file:/Users/gajanan/.nvm/versions/node/v20.19.5/etc/npmrc
+6 verbose title npm exec create-next-app@latest frontend --app --use-npm --no-tailwind --eslint --src-dir --import-alias @/*
+7 verbose argv "exec" "--cache" "./.npm-cache" "--yes" "--" "create-next-app@latest" "frontend" "--app" "--use-npm" "--no-tailwind" "--eslint" "--src-dir" "--import-alias" "@/*"
+8 verbose logfile logs-max:10 dir:/Users/gajanan/Documents/Final-Year-Project/.npm-cache/_logs/2026-02-20T20_30_47_568Z-
+9 verbose logfile /Users/gajanan/Documents/Final-Year-Project/.npm-cache/_logs/2026-02-20T20_30_47_568Z-debug-0.log
+10 silly logfile done cleaning log files
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 http fetch GET 200 https://registry.npmjs.org/npm 146ms
+13 http fetch GET 200 https://registry.npmjs.org/create-next-app 3431ms (cache miss)
+14 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+15 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+16 silly idealTree buildDeps
+17 silly fetch manifest create-next-app@16.1.6
+18 silly packumentCache full:https://registry.npmjs.org/create-next-app cache-miss
+19 http fetch GET 200 https://registry.npmjs.org/create-next-app 753ms (cache miss)
+20 silly packumentCache full:https://registry.npmjs.org/create-next-app set size:undefined disposed:false
+21 silly placeDep ROOT create-next-app@16.1.6 OK for:  want: 16.1.6
+22 silly reify moves {}
+23 silly audit bulk request { 'create-next-app': [ '16.1.6' ] }
+24 silly tarball no local data for create-next-app@https://registry.npmjs.org/create-next-app/-/create-next-app-16.1.6.tgz. Extracting by manifest.
+25 http fetch GET 200 https://registry.npmjs.org/create-next-app/-/create-next-app-16.1.6.tgz 54ms (cache miss)
+26 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 255ms
+27 silly audit report {}
+28 verbose cwd /Users/gajanan/Documents/Final-Year-Project
+29 verbose os Darwin 25.3.0
+30 verbose node v20.19.5
+31 verbose npm  v10.8.2
+32 notice
+32 notice New [31mmajor[39m version of npm available! [31m10.8.2[39m -> [34m11.10.1[39m
+32 notice Changelog: [34mhttps://github.com/npm/cli/releases/tag/v11.10.1[39m
+32 notice To update run: [4mnpm install -g npm@11.10.1[24m
+32 notice  { force: true, [Symbol(proc-log.meta)]: true }
+33 verbose exit 1
+34 verbose code 1
