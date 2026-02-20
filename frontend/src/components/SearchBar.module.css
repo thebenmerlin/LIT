@@ -9,7 +9,7 @@
     position: relative;
     display: flex;
     align-items: flex-end;
-    background-color: var(--panel-bg);
+    background-color: var(--background);
     border: 1px solid var(--panel-border);
     border-radius: 6px;
     padding: 14px 18px;
@@ -18,7 +18,8 @@
 
 .searchContainer:focus-within {
     border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+    /* Subtle shadow depth */
 }
 
 .searchInput {
@@ -28,7 +29,7 @@
     outline: none;
     font-family: var(--font-sans);
     font-size: 1.05rem;
-    color: var(--foreground);
+    color: var(--text-primary);
     resize: none;
     min-height: 28px;
     max-height: 150px;
@@ -45,9 +46,10 @@
     right: 14px;
     bottom: 12px;
     background: var(--accent);
-    color: #000;
+    color: var(--background);
     border: none;
     border-radius: 4px;
+    /* Minimal border radius */
     width: 32px;
     height: 32px;
     display: flex;
@@ -70,8 +72,9 @@
 .spinner {
     width: 16px;
     height: 16px;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-left-color: #000;
+    border: 2px solid rgba(15, 17, 21, 0.2);
+    /* using background color for track */
+    border-left-color: var(--background);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -80,18 +83,4 @@
     to {
         transform: rotate(360deg);
     }
-}
-
-.hintText {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    margin-left: 4px;
-}
-
-.hintText kbd {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
 }

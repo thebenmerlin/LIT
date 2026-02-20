@@ -1,172 +1,187 @@
 .layoutContainer {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  background-color: var(--background);
-  color: var(--text-primary);
+    display: grid;
+    grid-template-columns: 260px 1fr 380px;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--background);
+    color: var(--text-primary);
+    overflow: hidden;
 }
 
-/* 1. SIDEBAR PANEL */
+/* 1. LEFT - Navigation Sidebar */
 .sidebar {
-  width: 260px;
-  min-width: 260px;
-  background-color: var(--background);
-  border-right: 1px solid var(--panel-border);
-  display: flex;
-  flex-direction: column;
-  padding: 24px 16px;
-  z-index: 20;
+    background-color: var(--panel-bg);
+    border-right: 1px solid var(--panel-border);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    z-index: 10;
 }
 
 .logoContainer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 40px;
-  padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    margin-bottom: 32px;
 }
 
 .logoMark {
-  width: 32px;
-  height: 32px;
-  background: var(--accent);
-  color: var(--background);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  font-family: var(--font-serif);
-  font-weight: bold;
-  font-size: 18px;
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: var(--background);
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    /* Minimal border radius */
 }
 
 .logoText {
-  font-size: 0.95rem;
-  font-family: var(--font-serif);
-  font-weight: 600;
-  line-height: 1.2;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    margin: 0;
 }
 
 .navigation {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 12px;
 }
 
 .navItem {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: 6px;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
 }
 
 .navItem:hover {
-  background-color: rgba(255, 255, 255, 0.03);
-  color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
 }
 
 .navActive {
-  background-color: var(--panel-bg);
-  color: var(--accent);
-  border: 1px solid var(--panel-border);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent);
+}
+
+.navActive:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent-hover);
 }
 
 .navDivider {
-  height: 1px;
-  background-color: var(--panel-border);
-  margin: 16px 8px;
+    height: 1px;
+    background: var(--panel-border);
+    margin: 16px 12px;
 }
 
 .navHeader {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  letter-spacing: 0.05em;
-  padding: 0 12px;
-  margin-bottom: 8px;
+    padding: 0 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 8px;
 }
 
 .futureTag {
-  margin-left: auto;
-  font-size: 0.65rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--panel-border);
-  opacity: 0.5;
+    margin-left: auto;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-/* 2. MAIN RESEARCH PANEL */
+/* 2. CENTER - Primary Research Terminal */
 .mainPanel {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
-  border-right: 1px solid var(--panel-border);
-  position: relative;
-  min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    background: var(--background);
 }
 
 .searchHeaderArea {
-  padding: 32px 40px;
-  border-bottom: 1px solid var(--panel-border);
-  background: var(--background);
-  z-index: 10;
+    padding: 32px 40px;
+    border-bottom: 1px solid var(--panel-border);
+    position: sticky;
+    top: 0;
+    background: rgba(15, 17, 21, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 5;
 }
 
 .resultsArea {
-  flex: 1;
-  overflow-y: auto;
-  padding: 32px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .noResults {
-  color: var(--text-secondary);
-  font-style: italic;
-  font-size: 0.95rem;
-  text-align: center;
-  margin-top: 40px;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px dashed var(--panel-border);
+    border-radius: 8px;
 }
 
+/* Loading Skeletons */
 .loadingSkeletonContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .skeletonCard {
-  height: 120px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, var(--panel-bg) 25%, #1a1e24 50%, var(--panel-bg) 75%);
-  background-size: 200% 100%;
-  animation: loadingPulse 1.5s infinite;
-  border: 1px solid var(--panel-border);
+    height: 160px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--panel-bg) 25%, rgba(255, 255, 255, 0.02) 50%, var(--panel-bg) 75%);
+    background-size: 200% 100%;
+    animation: pulse 1.5s infinite linear;
+    border: 1px solid var(--panel-border);
 }
 
-@keyframes loadingPulse {
-  0% {
-    background-position: 200% 0;
-  }
+@keyframes pulse {
+    0% {
+        background-position: 200% 0;
+    }
 
-  100% {
-    background-position: -200% 0;
-  }
+    100% {
+        background-position: -200% 0;
+    }
 }
 
-/* 3. INSIGHT PANEL */
+/* 3. RIGHT - Insight Panel */
 .insightPanel {
-  width: 400px;
-  min-width: 400px;
-  background-color: var(--panel-bg);
-  overflow-y: auto;
-  position: relative;
+    background-color: var(--panel-bg);
+    border-left: 1px solid var(--panel-border);
+    height: 100vh;
+    overflow: hidden;
+    /* Internally scrollable by the component */
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
 }

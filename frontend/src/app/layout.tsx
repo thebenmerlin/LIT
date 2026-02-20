@@ -1,11 +1,16 @@
+import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata = {
-  title: "LIT (Legal Intelligence Terminal)",
-  description: "Enterprise-Grade Document Retrieval Strategy",
+export const metadata: Metadata = {
+  title: "Litigation Intelligence Terminal",
+  description: "Enterprise-grade legal research terminal.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <body>

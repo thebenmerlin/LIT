@@ -47,13 +47,16 @@ export default function Terminal() {
     setResults([]);
     setActiveCase(null);
 
+    // Simulate API search loading
     try {
+      // In Phase 3, this will hook deeply into the FastAPI backend
       const response = await fetch("http://127.0.0.1:8000/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: searchQuery, top_k: 5 }),
       });
 
+      if (!response.ok) throw new Error("Search failed");
       const data = await response.json();
       setResults(data.results || []);
     } catch (error) {
@@ -65,14 +68,14 @@ export default function Terminal() {
 
   return (
     <div className={styles.layoutContainer}>
-      
+
       {/* 1. LEFT - Navigation Sidebar */}
       <aside className={styles.sidebar}>
         <div className={styles.logoContainer}>
-          <div className={styles.logoMark}>L</span></div>
+          <div className={styles.logoMark}>L</div>
           <h2 className={styles.logoText}>Litigation Intelligence Terminal</h2>
         </div>
-        
+
         <nav className={styles.navigation}>
           <div className={`${styles.navItem} ${styles.navActive}`}>
             <IconResearch />
@@ -82,10 +85,10 @@ export default function Terminal() {
             <IconSaved />
             <span>Saved Cases</span>
           </div>
-          
+
           <div className={styles.navDivider}></div>
           <div className={styles.navHeader}>Intelligence</div>
-          
+
           <div className={styles.navItem}>
             <IconStatute />
             <span>Statutory Elements</span>
@@ -97,14 +100,14 @@ export default function Terminal() {
             <span className={styles.futureTag}>Soon</span>
           </div>
         </nav>
-      </aside >
+      </aside>
 
-    {/* 2. CENTER - Primary Research Terminal */ }
-    < main className = { styles.mainPanel } >
+      {/* 2. CENTER - Primary Research Terminal */}
+      <main className={styles.mainPanel}>
         <div className={styles.searchHeaderArea}>
-           <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+          <SearchBar onSearch={handleSearch} isLoading={isLoading} />
         </div>
-        
+
         <div className={styles.resultsArea}>
           {isLoading && (
             <div className={styles.loadingSkeletonContainer}>
@@ -113,11 +116,11 @@ export default function Terminal() {
               ))}
             </div>
           )}
-          
+
           {!isLoading && results.map((res, i) => (
-            <CaseResultCard 
-              key={res.metadata.id} 
-              data={res} 
+            <CaseResultCard
+              key={res.metadata.id}
+              data={res}
               index={i}
               isActive={activeCase?.metadata.id === res.metadata.id}
               onClick={() => setActiveCase(res)}
@@ -125,16 +128,16 @@ export default function Terminal() {
           ))}
 
           {!isLoading && results.length === 0 && query && (
-             <div className={styles.noResults}>No exact precedents found for "{query}".</div>
+            <div className={styles.noResults}>No exact precedents found for &quot;{query}&quot;.</div>
           )}
         </div>
-      </main >
+      </main>
 
-    {/* 3. RIGHT - Insight Panel */ }
-    < aside className = { styles.insightPanel } >
-      <InsightPanel activeCase={activeCase} />
-      </aside >
-      
-    </div >
+      {/* 3. RIGHT - Insight Panel */}
+      <aside className={styles.insightPanel}>
+        <InsightPanel activeCase={activeCase} />
+      </aside>
+
+    </div>
   );
 }

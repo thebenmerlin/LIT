@@ -50,7 +50,6 @@ export default function SearchBar({ onSearch, isLoading }: SearchBarProps) {
                     )}
                 </button>
             </form>
-            <div className={styles.hintText}>Press <kbd>Enter</kbd> to search</div>
         </div>
     );
 }
