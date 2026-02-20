@@ -1,18 +1,24 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
 .searchContainer {
     position: relative;
     display: flex;
     align-items: flex-end;
     background-color: var(--panel-bg);
     border: 1px solid var(--panel-border);
-    border-radius: 12px;
-    padding: 12px 16px;
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    padding: 14px 18px;
     transition: all 0.2s ease;
 }
 
 .searchContainer:focus-within {
-    border-color: #d0d0d0;
-    box-shadow: 0 4px 24px -5px rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-sm);
 }
 
 .searchInput {
@@ -21,34 +27,34 @@
     background: transparent;
     outline: none;
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--foreground);
     resize: none;
-    min-height: 24px;
+    min-height: 28px;
     max-height: 150px;
     padding-right: 48px;
     line-height: 1.5;
 }
 
 .searchInput::placeholder {
-    color: var(--text-light);
+    color: var(--text-secondary);
 }
 
 .searchButton {
     position: absolute;
-    right: 12px;
-    bottom: 10px;
-    background: var(--foreground);
-    color: var(--background);
+    right: 14px;
+    bottom: 12px;
+    background: var(--accent);
+    color: #000;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     width: 32px;
     height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, opacity 0.2s;
 }
 
 .searchButton:hover {
@@ -56,7 +62,36 @@
 }
 
 .searchButton:disabled {
-    background: var(--text-light);
+    background: var(--text-secondary);
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: 0.5;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-left-color: #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hintText {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
+.hintText kbd {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
 }

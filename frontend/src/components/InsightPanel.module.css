@@ -1,0 +1,179 @@
+.panelContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 40px;
+}
+
+.emptyIcon {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    opacity: 0.1;
+    margin-bottom: 24px;
+}
+
+.emptyState h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.emptyState p {
+    font-size: 0.85rem;
+    max-width: 260px;
+    line-height: 1.5;
+}
+
+.header {
+    padding: 32px;
+    border-bottom: 1px solid var(--panel-border);
+    background: var(--background);
+}
+
+.topMeta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.scoreBadge {
+    background: var(--accent);
+    color: var(--background);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.title {
+    font-size: 1.6rem;
+    line-height: 1.25;
+    color: var(--text-primary);
+}
+
+.scrollArea {
+    flex: 1;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.insightSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sectionTitle {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.block h4 {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.block p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--panel-border);
+    width: 100%;
+}
+
+.citationList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.citationList li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    border-left: 2px solid var(--panel-border);
+    transition: border-color 0.2s;
+}
+
+.citationList li:hover {
+    border-color: var(--accent);
+}
+
+.citeName {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.citeContext {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.futureState {
+    opacity: 0.5;
+}
+
+.lockedArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed var(--panel-border);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.lockedArea p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
