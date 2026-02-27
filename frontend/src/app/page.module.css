@@ -1,6 +1,6 @@
 .layoutContainer {
     display: grid;
-    grid-template-columns: var(--left-width, 260px) 4px 1fr 4px var(--right-width, 380px);
+    grid-template-columns: var(--left-width, 260px) 4px 1fr var(--right-gap, 4px) var(--right-width, 380px);
     height: 100vh;
     width: 100vw;
     background-color: var(--background);
@@ -148,9 +148,30 @@
     gap: 16px;
 }
 
+.centeredSearchArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 24px;
+    height: 100%;
+}
+
+.centeredSearchWrapper {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
 .quickSearchContainer {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     flex-wrap: wrap;
 }
@@ -201,6 +222,56 @@
     border-radius: 8px;
 }
 
+/* Demo Placeholders */
+.placeholderView {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+.placeholderView h2 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.placeholderView p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 600px;
+}
+
+.placeholderBox {
+    margin-top: 24px;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px dashed var(--panel-border);
+    border-radius: 8px;
+    padding: 60px;
+    text-align: center;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.graphPlaceholder {
+    margin-top: 24px;
+    flex: 1;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
 /* Loading Skeletons */
 .loadingSkeletonContainer {
     display: flex;
@@ -233,6 +304,58 @@
     border-left: 1px solid var(--panel-border);
     height: 100vh;
     overflow: hidden;
-    /* Internally scrollable by the component */
+    position: relative;
+    /* Added for absolute positioning of children */
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal and Expand Features */
+.iconButton {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: 1px solid var(--panel-border);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.iconButton:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-primary);
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.expandedModal {
+    background: var(--panel-bg);
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid var(--panel-border);
 }
