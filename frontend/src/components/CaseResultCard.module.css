@@ -111,3 +111,30 @@
 .expandBtn:hover {
     color: var(--accent-hover);
 }
+
+/* ==========================================================================
+   Mobile Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+    .card {
+        padding: 12px 16px;
+    }
+
+    .cardTitle {
+        font-size: 1.15rem;
+    }
+
+    .cardHeader {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .scoreBadge {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+
+    .metaCourt {
+        font-size: 0.7rem;
+    }
+}
