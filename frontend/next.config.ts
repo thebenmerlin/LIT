@@ -10,6 +10,7 @@ const withPWA = withPWAInit({
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+  turbopack: {}, // Bypass Next 16 Turbopack error when using next-pwa plugin
 };
 
 export default withPWA(nextConfig);
