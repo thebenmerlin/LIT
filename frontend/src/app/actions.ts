@@ -40,7 +40,7 @@ export async function getSavedCases() {
 
 export async function toggleSavedCase(caseId: string, isSaving: boolean) {
     if (isSaving) {
-        await db.insert(savedCases).values({ caseId }).onConflictDoNothing();
+        await db.insert(savedCases).values({ id: caseId, caseId }).onConflictDoNothing();
     } else {
         await db.delete(savedCases).where(eq(savedCases.caseId, caseId));
     }
