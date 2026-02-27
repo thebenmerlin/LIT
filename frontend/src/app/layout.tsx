@@ -18,7 +18,11 @@ export const metadata: Metadata = {
     title: "LIT Terminal",
   },
   icons: {
-    apple: "/icon.svg",
+    icon: "/icon.svg",
+    apple: [
+      { url: "/icon.svg" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" }
+    ],
   },
 };
 
