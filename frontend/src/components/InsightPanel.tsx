@@ -3,13 +3,16 @@ import styles from './InsightPanel.module.css';
 interface CaseData {
     score: number;
     metadata: {
-        id: number;
+        id: string;
         title: string;
         court: string;
         year: number;
         sections: string;
-        source_file: string;
+        source_file?: string;
+        summary: string;
     };
+    abstract: string;
+    citations: string[];
 }
 
 interface InsightPanelProps {
@@ -55,22 +58,20 @@ export default function InsightPanel({ activeCase }: InsightPanelProps) {
                 <section className={styles.insightBlock}>
                     <h3 className={styles.blockTitle}>Summary Frame</h3>
                     <div className={styles.abstractGroup}>
-                        <h4 className={styles.abstractSub}>Facts</h4>
-                        <p className={styles.abstractText}>The appellant challenged the arbitral award citing unliquidated damages were awarded without proving actual loss under Section 73.</p>
+                        <h4 className={styles.abstractSub}>Synopsis</h4>
+                        <p className={styles.abstractText}>{metadata.summary}</p>
 
-                        <h4 className={styles.abstractSub}>Issue</h4>
-                        <p className={styles.abstractText}>Whether the aggrieved party must prove actual damage to claim compensation for breach under Section 73 of the Contract Act.</p>
-
-                        <h4 className={styles.abstractSub}>Holding</h4>
-                        <p className={styles.abstractText}>The court held that compensation cannot be granted merely on the basis of a breach if no legal injury or actual loss is proven.</p>
+                        <h4 className={styles.abstractSub}>Key Findings</h4>
+                        <p className={styles.abstractText}>{activeCase.abstract}</p>
                     </div>
                 </section>
 
                 <section className={styles.insightBlock}>
                     <h3 className={styles.blockTitle}>Extracted Citations</h3>
                     <ul className={styles.citationList}>
-                        <li><span className={styles.citeRef}>Fateh Chand v. Balkishan Dass (1963)</span> — Established standard for Sections 73 and 74.</li>
-                        <li><span className={styles.citeRef}>Kailash Nath Associates v. DDA (2015)</span> — Reaffirmed compensation requires proof of loss.</li>
+                        {activeCase.citations.map((cite, i) => (
+                            <li key={i}><span className={styles.citeRef}>{cite}</span></li>
+                        ))}
                     </ul>
                 </section>
 

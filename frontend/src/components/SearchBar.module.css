@@ -17,8 +17,8 @@
 }
 
 .searchContainer:focus-within {
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
     /* Subtle shadow depth */
 }
 
@@ -27,7 +27,7 @@
     border: none;
     background: transparent;
     outline: none;
-    font-family: var(--font-sans);
+    font-family: var(--font-serif);
     font-size: 1.05rem;
     color: var(--text-primary);
     resize: none;
@@ -72,7 +72,7 @@
 .spinner {
     width: 16px;
     height: 16px;
-    border: 2px solid rgba(15, 17, 21, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.1);
     /* using background color for track */
     border-left-color: var(--background);
     border-radius: 50%;

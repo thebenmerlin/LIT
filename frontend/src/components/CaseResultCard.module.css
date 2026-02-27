@@ -12,7 +12,7 @@
 }
 
 .card:hover {
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(0, 0, 0, 0.15);
     /* Subtle hover highlight */
     transform: translateY(-1px);
 }
@@ -80,6 +80,7 @@
     line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     /* Truncated to 2 lines */
     -webkit-box-orient: vertical;
     overflow: hidden;

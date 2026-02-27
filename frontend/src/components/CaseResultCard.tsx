@@ -3,12 +3,13 @@ import styles from './CaseResultCard.module.css';
 interface CaseData {
     score: number;
     metadata: {
-        id: number;
+        id: string;
         title: string;
         court: string;
         year: number;
         sections: string;
-        source_file: string;
+        source_file?: string;
+        summary: string;
     };
 }
 
@@ -44,7 +45,7 @@ export default function CaseResultCard({ data, index, isActive, onClick }: CaseR
 
                 {/* 2-3 Line Summary Preview Simulation */}
                 <p className={styles.summaryPreview}>
-                    Judgment analysis concerning {metadata.sections}. The court examined the principles of unliquidated damages and remoteness of breach in commercial disputes, citing established statutory precedents.
+                    {metadata.summary}
                 </p>
             </div>
 

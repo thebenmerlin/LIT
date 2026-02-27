@@ -1,11 +1,25 @@
 .layoutContainer {
     display: grid;
-    grid-template-columns: 260px 1fr 380px;
+    grid-template-columns: var(--left-width, 260px) 4px 1fr 4px var(--right-width, 380px);
     height: 100vh;
     width: 100vw;
     background-color: var(--background);
     color: var(--text-primary);
     overflow: hidden;
+}
+
+/* Resizer Handle */
+.resizer {
+    width: 4px;
+    background: transparent;
+    cursor: col-resize;
+    z-index: 20;
+    transition: background 0.2s ease;
+}
+
+.resizer:hover,
+.resizer:active {
+    background: var(--accent);
 }
 
 /* 1. LEFT - Navigation Sidebar */
@@ -72,17 +86,17 @@
 }
 
 .navItem:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(0, 0, 0, 0.03);
     color: var(--text-primary);
 }
 
 .navActive {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     color: var(--accent);
 }
 
 .navActive:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     color: var(--accent-hover);
 }
 
@@ -97,7 +111,7 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.4);
     margin-bottom: 8px;
 }
 
@@ -105,7 +119,7 @@
     margin-left: auto;
     font-size: 0.65rem;
     padding: 2px 6px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     border: 1px solid var(--panel-border);
     border-radius: 12px;
     text-transform: uppercase;
@@ -126,9 +140,46 @@
     border-bottom: 1px solid var(--panel-border);
     position: sticky;
     top: 0;
-    background: rgba(15, 17, 21, 0.95);
+    background: rgba(253, 253, 252, 0.95);
     backdrop-filter: blur(10px);
     z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.quickSearchContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.quickSearchLabel {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.quickSearchPill {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--panel-border);
+    color: var(--text-primary);
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quickSearchPill:hover {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.quickSearchPill:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .resultsArea {
@@ -145,7 +196,7 @@
     padding: 60px 20px;
     color: var(--text-secondary);
     font-size: 0.95rem;
-    background: rgba(255, 255, 255, 0.01);
+    background: rgba(0, 0, 0, 0.01);
     border: 1px dashed var(--panel-border);
     border-radius: 8px;
 }
@@ -160,7 +211,7 @@
 .skeletonCard {
     height: 160px;
     border-radius: 8px;
-    background: linear-gradient(90deg, var(--panel-bg) 25%, rgba(255, 255, 255, 0.02) 50%, var(--panel-bg) 75%);
+    background: linear-gradient(90deg, var(--panel-bg) 25%, rgba(0, 0, 0, 0.02) 50%, var(--panel-bg) 75%);
     background-size: 200% 100%;
     animation: pulse 1.5s infinite linear;
     border: 1px solid var(--panel-border);

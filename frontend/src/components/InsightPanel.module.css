@@ -20,7 +20,7 @@
 }
 
 .emptyIcon {
-    color: rgba(255, 255, 255, 0.1);
+    color: rgba(0, 0, 0, 0.1);
 }
 
 .emptyState p {
@@ -73,7 +73,7 @@
     font-size: 0.8rem;
     color: var(--text-secondary);
     padding: 4px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Content Area */
@@ -136,7 +136,7 @@
     line-height: 1.5;
     color: var(--text-secondary);
     padding-left: 12px;
-    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    border-left: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .citeRef {
@@ -148,7 +148,7 @@
 /* Locked Block */
 .lockedBlock {
     margin-top: auto;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.02);
     border: 1px dashed var(--panel-border);
     padding: 20px;
     border-radius: 6px;
@@ -169,5 +169,5 @@
 .lockedText {
     font-size: 0.85rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(0, 0, 0, 0.4);
 }

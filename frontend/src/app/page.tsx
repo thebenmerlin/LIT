@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, MouseEvent as ReactMouseEvent } from "react";
 import styles from "./page.module.css";
 import SearchBar from "@/components/SearchBar";
 import CaseResultCard from "@/components/CaseResultCard";
@@ -33,11 +33,122 @@ const IconGraph = () => (
   </svg>
 );
 
+// --- DEMO MOCK DATA ---
+const MOCK_DATA = [
+  {
+    score: 0.98,
+    metadata: {
+      id: "C-1988-234",
+      title: "State of Maharashtra vs. R. K. Sharma",
+      court: "Supreme Court of India",
+      year: 1988,
+      sections: "Section 73 of the Indian Evidence Act",
+      summary: "A landmark judgment interpreting Section 73 of the Indian Evidence Act regarding the court's power to direct a person to give specimen signatures. The court held that such a direction does not violate the fundamental right against self-incrimination under Article 20(3) of the Constitution."
+    },
+    abstract: "The core issue was whether a Magistrate could direct an accused to give specimen handwriting/signatures under Section 73 of the Evidence Act. The Supreme Court clarified the scope of Section 73, distinguishing it from Section 311A CrPC, and emphasized the necessity of such powers for the administration of justice without compromising constitutional safeguards.",
+    citations: [
+      "Article 20(3) of the Constitution of India",
+      "Section 73 of the Indian Evidence Act, 1872",
+      "Section 311A of the Code of Criminal Procedure, 1973"
+    ]
+  },
+  {
+    score: 0.85,
+    metadata: {
+      id: "C-2001-892",
+      title: "P. R. Sharma vs. Union of India",
+      court: "Delhi High Court",
+      year: 2001,
+      sections: "Section 45 & Section 73 of Evidence Act",
+      summary: "This case dealt with the admissibility of expert opinion on handwriting and the evidentiary value of specimen signatures obtained under Section 73 of the Evidence Act in cases involving white-collar crimes and forgery."
+    },
+    abstract: "The High Court extensively analyzed the procedure for obtaining specimen signatures and the chain of custody required for such evidence to be admissible and reliable in court, particularly emphasizing the role of the Magistrate in ensuring the voluntariness of the samples provided.",
+    citations: [
+      "Section 45 of the Indian Evidence Act, 1872",
+      "Section 73 of the Indian Evidence Act, 1872"
+    ]
+  },
+  {
+    score: 0.76,
+    metadata: {
+      id: "C-2015-104",
+      title: "Vikas Kumar vs. State of UP",
+      court: "Supreme Court of India",
+      year: 2015,
+      sections: "Section 73 Evidence Act, IT Act 2000",
+      summary: "Further clarification on the intersection of Section 73 of the Evidence Act and modern forensic techniques, specifically challenging the authenticity of digital signatures and scanned documents."
+    },
+    abstract: "The Apex court ruled on the limitations of physical specimen signatures when dealing with complex digital forgery, highlighting the need for specialized cyber forensic tools alongside traditional Section 73 applications.",
+    citations: [
+      "Section 73 of the Indian Evidence Act, 1872",
+      "Information Technology Act, 2000"
+    ]
+  }
+];
+
 export default function Terminal() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeCase, setActiveCase] = useState<any | null>(null);
+
+  // Resize State
+  const [leftWidth, setLeftWidth] = useState(260);
+  const [rightWidth, setRightWidth] = useState(380);
+
+  const isResizingLeft = useRef(false);
+  const isResizingRight = useRef(false);
+
+  // Global mouse event listeners for dragging
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizingLeft.current && !isResizingRight.current) return;
+
+      if (isResizingLeft.current) {
+        // Constrain left sidebar (min 200px, max 400px)
+        const newWidth = Math.max(200, Math.min(e.clientX, 400));
+        setLeftWidth(newWidth);
+      } else if (isResizingRight.current) {
+        // Constrain right sidebar (min 300px, max 600px)
+        const newWidth = Math.max(300, Math.min(window.innerWidth - e.clientX, 600));
+        setRightWidth(newWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      isResizingLeft.current = false;
+      isResizingRight.current = false;
+      document.body.style.cursor = 'default';
+      document.body.style.userSelect = 'auto'; // Re-enable selection
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []);
+
+  const startResizingLeft = (e: ReactMouseEvent) => {
+    e.preventDefault();
+    isResizingLeft.current = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none'; // Prevent text selection while dragging
+  };
+
+  const startResizingRight = (e: ReactMouseEvent) => {
+    e.preventDefault();
+    isResizingRight.current = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  };
+
+  const QUICK_SEARCHES = [
+    "Section 73 Indian Evidence Act",
+    "Article 20(3) Self-incrimination",
+    "Admissibility of Expert Opinion"
+  ];
 
   const handleSearch = async (searchQuery: string) => {
     if (!searchQuery.trim()) return;
@@ -47,27 +158,32 @@ export default function Terminal() {
     setResults([]);
     setActiveCase(null);
 
-    // Simulate API search loading
-    try {
-      // In Phase 3, this will hook deeply into the FastAPI backend
-      const response = await fetch("http://127.0.0.1:8000/search", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: searchQuery, top_k: 5 }),
-      });
+    // Simulate network delay for demo
+    setTimeout(() => {
+      // Filter mock data based on query (simple case-insensitive inclusion)
+      const lowercaseQuery = searchQuery.toLowerCase();
+      const filtered = MOCK_DATA.filter(c =>
+        c.metadata.title.toLowerCase().includes(lowercaseQuery) ||
+        c.metadata.summary.toLowerCase().includes(lowercaseQuery) ||
+        c.abstract.toLowerCase().includes(lowercaseQuery) ||
+        c.citations.some(cite => cite.toLowerCase().includes(lowercaseQuery))
+      );
 
-      if (!response.ok) throw new Error("Search failed");
-      const data = await response.json();
-      setResults(data.results || []);
-    } catch (error) {
-      console.error("Error fetching cases:", error);
-    } finally {
+      // If no exact match via simple filter, just return all of them for demo purposes
+      // so the UI always has *something* to show if they search random things
+      setResults(filtered.length > 0 ? filtered : MOCK_DATA);
       setIsLoading(false);
-    }
+    }, 1200);
   };
 
   return (
-    <div className={styles.layoutContainer}>
+    <div
+      className={styles.layoutContainer}
+      style={{
+        '--left-width': `${leftWidth}px`,
+        '--right-width': `${rightWidth}px`
+      } as React.CSSProperties}
+    >
 
       {/* 1. LEFT - Navigation Sidebar */}
       <aside className={styles.sidebar}>
@@ -102,10 +218,30 @@ export default function Terminal() {
         </nav>
       </aside>
 
+      {/* Resizer LEFT */}
+      <div
+        className={styles.resizer}
+        onMouseDown={startResizingLeft}
+      />
+
       {/* 2. CENTER - Primary Research Terminal */}
       <main className={styles.mainPanel}>
         <div className={styles.searchHeaderArea}>
           <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+
+          <div className={styles.quickSearchContainer}>
+            <span className={styles.quickSearchLabel}>Quick searches:</span>
+            {QUICK_SEARCHES.map((qs, i) => (
+              <button
+                key={i}
+                className={styles.quickSearchPill}
+                onClick={() => handleSearch(qs)}
+                disabled={isLoading}
+              >
+                {qs}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className={styles.resultsArea}>
@@ -132,6 +268,12 @@ export default function Terminal() {
           )}
         </div>
       </main>
+
+      {/* Resizer RIGHT */}
+      <div
+        className={styles.resizer}
+        onMouseDown={startResizingRight}
+      />
 
       {/* 3. RIGHT - Insight Panel */}
       <aside className={styles.insightPanel}>
